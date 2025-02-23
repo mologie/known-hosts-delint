@@ -5,16 +5,16 @@ from collections import defaultdict
 from io import StringIO
 from pathlib import Path
 
+def is_ip(host):
+    return re.fullmatch(r'\d{1,3}(?:\.\d{1,3}){3}', host) or re.fullmatch(r'[0-9a-fA-F:]+', host)
+
 def sort_host(host):
-    # IPs are sorted after hostnames.
-    if re.match(r'^\d{1,3}(?:\.\d{1,3}){3}$', host) or (host.startswith('[') and host.endswith(']')):
-        return (1, host)
-    return (0, host)
+    # IPs are sorted after hostnames
+    return (1, host) if is_ip(host) else (0, host)
 
 def key_type_order(key):
-    key_type, _, _ = key.partition(' ')
-    order = {"ssh-ed25519": 0, "ssh-rsa": 1, "ecdsa-sha2-nistp256": 2}
-    return order.get(key_type, 99)
+    key_type = key.partition(' ')[0]
+    return {"ssh-ed25519": 0, "ssh-rsa": 1, "ecdsa-sha2-nistp256": 2}.get(key_type, 99)
 
 def merge_known_hosts(infile, outfile, transitive=False):
     key_to_hosts = defaultdict(set)

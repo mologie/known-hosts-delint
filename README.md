@@ -1,4 +1,4 @@
-# known-hosts-delint
+# known-hosts-linter
 
 **A tool to clean up your SSH `known_hosts` file**
 
@@ -27,8 +27,8 @@ host2 ssh-ed25519 KEY
 
 ## Usage
 
-1. Preview changes: `./delint.py --transitive --mode diff`
-2. Apply: `./delint.py --transitive --mode apply`
+1. Preview changes: `./lint.py --transitive --mode diff`
+2. Apply: `./lint.py --transitive --mode apply`
 
 There is not much more to it. You can optionally set the path to your known hosts file as first argument, or omit `--mode` to receive the output on stdout for further processing.
 

@@ -47,7 +47,7 @@ def merge_known_hosts(infile, outfile, transitive=False):
         outfile.write(f"{','.join(hosts)} {key}\n")
 
 def main():
-    parser = argparse.ArgumentParser(description="Delint known_hosts file")
+    parser = argparse.ArgumentParser(description="Linter for SSH known_hosts file")
     parser.add_argument('known_hosts_file', nargs='?', default=os.path.expanduser('~/.ssh/known_hosts'), help="Path to the known_hosts file")
     parser.add_argument('--mode', choices=['diff', 'apply', 'emit'], default='emit', help="Mode of operation: 'diff' to emit a diff, 'apply' to replace the input file, 'emit' to write to stdout (default)")
     parser.add_argument('--transitive', action='store_true', help="Enable transitive merging")

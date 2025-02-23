@@ -1,7 +1,7 @@
 import unittest
 import textwrap
 from io import StringIO
-from delint import merge_known_hosts
+from lint import merge_known_hosts
 
 def normstr(s):
     return textwrap.dedent(s).strip() + "\n"
